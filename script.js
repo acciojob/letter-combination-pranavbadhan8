@@ -1,6 +1,9 @@
-function letterCombinations(input_digit) {
-  //Complete the function
-	 const digitToLetters = {
+function letterCombinations(digits) {
+   if (digits.length === 0) {
+    return [];
+  }
+
+  const mappings = {
     '2': 'abc',
     '3': 'def',
     '4': 'ghi',
@@ -11,28 +14,21 @@ function letterCombinations(input_digit) {
     '9': 'wxyz'
   };
 
-  if (digits.length === 0) {
-    return [];
-  }
-
   const result = [];
 
-  function backtrack(currentString, nextDigits) {
-    if (nextDigits.length === 0) {
-      result.push(currentString);
+  function recurse(index, current) {
+    if (index === digits.length) {
+      result.push(current);
       return;
     }
 
-    const letters = digitToLetters[nextDigits[0]];
-
+    const letters = mappings[digits[index]];
     for (let i = 0; i < letters.length; i++) {
-      const letter = letters[i];
-      backtrack(currentString + letter, nextDigits.slice(1));
+      recurse(index + 1, current + letters[i]);
     }
   }
 
-  backtrack('', digits);
+  recurse(0, '');
   return result.sort();
 }
 
-module.exports = letterCombinations;
