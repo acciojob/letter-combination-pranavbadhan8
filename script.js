@@ -1,5 +1,5 @@
 function letterCombinations(digits) {
-   if (digits.length === 0) {
+  if (digits.length === 0) {
     return [];
   }
 
@@ -11,7 +11,7 @@ function letterCombinations(digits) {
     '6': 'mno',
     '7': 'pqrs',
     '8': 'tuv',
-    '9': 'wxyz'
+    '9': 'wxyz',
   };
 
   const result = [];
